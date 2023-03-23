@@ -1,10 +1,19 @@
-# Title (replace with your title)
+# Regular Expression 
 
-A Regular Expression is a special sequence of characters that help a user match or find strings (or sets of strings), using a special syntax. It is one of the most powerful concept used for pattern matching within strings. Hence, it is very important to know various Special Characters, Quantifiers, and Anchors that form part of regular expressions. Through this small post, I intend to discuss some of these with reference to Perl.
+A Regular Expression is a special sequence of characters that help a user match or find strings (or sets of strings), using a special syntax. It is one of the most powerful concept used for pattern matching within strings. Hence, it is very important to know various Special Characters, Quantifiers, and Anchors that form part of regular expressions. 
 
 ## Summary
 
-Briefly summarize the regex you will be describing and what you will explain. Include a code snippet of the regex. Replace this text with your summary.
+This series of characters might look like nonsense, but it’s actually a search pattern meant for basic username validation. That is, it checks to see if a string fulfills the requirements for a basic username. In a nutshell, here’s how it breaks down (we’ll explore it in more detail later):
+
+* The string can contain any lowercase letter between a–z
+
+* The string can contain any number between 0–9
+
+* The string can contain an underscore or hyphen
+
+* The string is between 3–16 characters long
+
 
 ## Table of Contents
 
@@ -15,58 +24,79 @@ Briefly summarize the regex you will be describing and what you will explain. In
 - [Flags](#flags)
 - [Grouping and Capturing](#grouping-and-capturing)
 - [Bracket Expressions](#bracket-expressions)
-- [Greedy and Lazy Match](#greedy-and-lazy-match)
-- [Boundaries](#boundaries)
-- [Back-references](#back-references)
-- [Look-ahead and Look-behind](#look-ahead-and-look-behind)
+
 
 ## Regex Components
 
+A regex is considered a literal, so the pattern must be wrapped in slash characters (/).
+
+* /^[a-z0-9_-]{3,16}$/
+
 ### Anchors
 
-These characters give details about the location within a particular string a user is trying to search. It helps in searching within lines. Usually, for finding character A in a string, you can use the following characters to find a match within a line:
+The characters ^ and $ are both considered to be anchors. The ^ anchor signifies a string that begins with the characters that follow it
 
-A$: Helps in matching at the end of a line.
-^A: Helps in matching at the beginning of a line.
+The $ anchor signifies a string that ends with the characters that precede it. Just as with the ^ character, it can be preceded by an exact string or a range of possible matches.
+
+ * [a-z0-9_-]
+ * {3,16}
+ * $
+
 
 ### Quantifiers
-Quantifiers specify how many times a pattern should be repeated. For example, the "*" quantifier matches zero or more occurrences of the preceding character, while the "+" quantifier matches one or more occurrences. Sample code snippet: The following regex will match any string that contains one or more digits:
 
-/\d+/
+All right, so now we know what we're looking for inside the brackets. Quantifiers set the limits of the string that your regex matches (or an individual section of the string). They frequently include the minimum and maximum number of characters that your regex is looking for.
+
+* *—Matches the pattern zero or more times
+
+* +—Matches the pattern one or more times
+
+* ?—Matches the pattern zero or one time
+
+* {}—Curly brackets can provide three different ways to set limits for a match:
 
 ### OR Operator
 
-The "|" character is used as the OR operator in regular expressions, allowing you to match one of several alternatives. Sample code snippet: The following regex will match either "apple" or "orange":
+Using the OR operator (|), the expression [abc] could be written as (a|b|c). Using our example in the grouping constructs section, we can take the original expression:
 
-/apple|orange/
+* (abc):(xyz)
 
 ### Character Classes
 
-Character sets help you define parameters for the type of text you want to search. For instance, you can use [0-9] to search for numerical ranges. Interestingly, regex allows programmers to find letter ranges or support alternate spellings. For example, so[ml]e matches both some and sole. Some commonly used character sets are:
+A character class in a regex defines a set of characters, any one of which can occur in an input string to fulfill a match
 
-[a-z]: Helps in matching lowercase letters from a to z.
-[A-Z]: Helps in matching uppercase letters from A to Z.
-[0-9]: Helps match a range of numbers from 0 to 9.
-[.]: Helps match any character, except line break characters.
+* .—Matches any character except the newline character (\n)
+
+* \d—Matches any Arabic numeral digit. This class is equivalent to the bracket expression [0-9].
 
 ### Flags
 
-Flags are used to modify the behavior of a regular expression, such as making it case-insensitive or allowing it to match across multiple lines. Sample code snippet: The following regex will match any string that contains the word "hello", regardless of case:
+Flags are placed at the end of a regex, after the second slash, and they define additional functionality or limits for the regex.
 
-/hello/i
+* g—Global search: the regex should be tested against all possible matches in a string.
 
-### Grouping and Capturing
+* i—Case-insensitive search: case should be ignored while attempting a match in a string
+
+* m—Multi-line search: a multi-line input string should be treated as multiple lines
+
+### Grouping 
+
+The primary way you group a section of a regex is by using parentheses (()). 
+ 
+ * (abc):(xyz)
 
 ### Bracket Expressions
 
-### Greedy and Lazy Match
+Anything inside a set of square brackets ([]) represents a range of characters that we want to match. These patterns are known as bracket expressions, but they are also known as a positive character group, because they outline the characters we want to include.
 
-### Boundaries
+* [a-z]—The string can contain any lowercase letter between a–z. Keep in mind that this looks for lowercase characters only. If we wanted to include uppercase characters, we would need to change the expression to [a-zA-Z].
 
-### Back-references
+* [0-9]—The string can contain any number between 0–9
 
-### Look-ahead and Look-behind
+### Resources 
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+A short section about the author with a link to the author's https://github.com/Haillander
